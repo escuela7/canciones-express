@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CANCIONES EXPRESS ✨ Tu Canción Hoy</title>
+  <meta name="description" content="🔥 ¡OFERTA LIMITADA! Canciones personalizadas con tu historia. Aprobada por ti antes de grabar. Entrega en 24-48h. Tijuana BC">
+  <meta property="og:title" content="CANCIONES EXPRESS - Tu Historia en Música">
+  <meta property="og:description" content="Canciones personalizadas profesionales. Entrega rápida. +52 664 375 8151">
+  <meta property="og:type" content="website">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background: #050505; 
+      color: #fff; 
+      line-height: 1.4;
+    }
+    
+    /* 🔥 BARRA DE URGENCIA */
+    .barra-urgente {
+      background: linear-gradient(90deg, #e62020, #ff4d4d, #e62020);
+      background-size: 200% 100%;
+      animation: brillo-urgente 2s linear infinite;
+      color: #fff;
+      text-align: center;
+      padding: 12px 15px;
+      font-weight: 900;
+      font-size: 0.95em;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    @keyframes brillo-urgente {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .hero { 
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), 
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%"><stop offset="0%" style="stop-color:%23FFD700;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23FF9500;stop-opacity:0.1"/></linearGradient></defs><rect width="1200" height="600" fill="%23050505"/><circle cx="200" cy="150" r="80" fill="url(%23grad)"/><circle cx="1000" cy="500" r="120" fill="url(%23grad)"/></svg>') center/cover; 
+      padding: 70px 20px 50px; 
+      text-align: center; 
+    }
+    .hero h1 { 
+      font-size: clamp(2em, 6vw, 3.2em); 
+      color: #FFD700; 
+      font-family: 'Impact', sans-serif; 
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+      animation: aparecer 1s ease-out;
+    }
+    @keyframes aparecer {
+      from { opacity:0; transform: translateY(10px); }
+      to { opacity:1; transform: translateY(0); }
+    }
+    .hero .emocion {
+      font-size: clamp(1.1em, 3vw, 1.4em);
+      color: #fff;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    .hero p { 
+      font-size: 1.05em; 
+      color: #ccc; 
+      max-width: 520px;
+      margin: 0 auto 20px;
+    }
+    .btn { 
+      background: #FFD700; 
+      color: #000; 
+      padding: 16px 32px; 
+      border-radius: 12px; 
+      text-decoration: none; 
+      font-weight: 900; 
+      font-size: 1.05em; 
+      display: inline-block; 
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover { 
+      transform: scale(1.08); 
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+    .btn-grande {
+      padding: 18px 40px;
+      font-size: 1.15em;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+      animation: boton-pulso 2s infinite;
+    }
+    @keyframes boton-pulso {
+      0%,100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+      50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.7); }
+    }
+    .btn-promo {
+      background: linear-gradient(90deg, #FF9500, #FFD700);
+      font-size: 1.1em;
+      padding: 17px 30px;
+    }
+
+    .section { 
+      padding: 45px 20px; 
+      max-width: 880px; 
+      margin: 0 auto; 
+      text-align: center; 
+    }
+    .section h2 {
+      font-size: 1.6em;
+      color: #FFD700;
+      margin-bottom: 30px;
+    }
+
+    /* REPRODUCTOR DE AUDIO */
+    .reproductor-box {
+      background: #121212;
+      border: 2px solid #FFD700;
+      border-radius: 16px;
+      padding: 25px 20px;
+      margin-top: 25px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+    }
+    .reproductor-box h3 {
+      color: #FFD700;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .reproductor-box p {
+      color: #ccc;
+      font-size: 0.95em;
+      margin-bottom: 15px;
+    }
+    audio {
+      width: 100%;
+      max-width: 500px;
+      outline: none;
+      border-radius: 8px;
+    }
+
+    /* PASOS */
+    .pasos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .paso {
+      background: #151515;
+      padding: 20px 15px;
+      border-radius: 12px;
+      border: 1px solid #2a2a2a;
+      transition: 0.3s;
+    }
+    .paso:hover { border-color: #FFD700; transform: translateY(-3px); }
+    .paso b { color: #FFD700; font-size: 1.4em; display: block; }
+
+    /* PAQUETES */
+    .paquetes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    .paquete {
+      background: #121212;
+      border: 2px solid #2a2a2a;
+      border-radius: 18px;
+      padding: 30px 22px;
+      transition: 0.3s;
+      position: relative;
+    }
+    .paquete:hover {
+      transform: translateY(-5px);
+      border-color: #FFD700;
+    }
+    .paquete.promo {
+      border-color: #FF9500;
+      background: linear-gradient(180deg, #1a1400, #121212);
+      transform: scale(1.03);
+    }
+    .etiqueta-top {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #FF9500, #FFD700);
+      color: #000;
+      padding: 5px 18px;
+      border-radius: 20px;
+      font-weight: 900;
+      font-size: 0.8em;
+    }
+    .paquete h3 {
+      font-size: 1.3em;
+      color: #FFD700;
+      margin-bottom: 5px;
+    }
+    .precio {
+      font-size: 2.4em;
+      font-weight: 900;
+      margin: 10px 0 15px;
+    }
+    .precio small { font-size: 0.4em; color: #888; font-weight: normal; }
+    .paquete ul {
+      list-style: none;
+      text-align: left;
+      margin: 15px 0;
+    }
+    .paquete li {
+      padding: 7px 0;
+      font-size: 0.95em;
+      border-bottom: 1px solid #222;
+    }
+    .paquete li:last-child { border: none; }
+    .paquete li::before { content: "✓ "; color: #FFD700; font-weight: bold; }
+
+    /* CATEGORÍAS */
+    .categorias {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .cat {
+      background: #151515;
+      padding: 10px 20px;
+      border-radius: 25px;
+      border: 1px solid #333;
+      font-size: 0.95em;
+    }
+
+    /* TESTIMONIOS */
+    .testimonios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .testimonio {
+      background: #121212;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #FFD700;
+    }
+    .testimonio-autor {
+      color: #FFD700;
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+    .stars {
+      color: #FFD700;
+      font-size: 1.1em;
+      margin-bottom: 8px;
+    }
+
+    /* WHATSAPP FLOTANTE */
+    .whatsapp-flotante {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+      animation: flotante 3s ease-in-out infinite;
+      z-index: 99;
+    }
+    @keyframes flotante {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .whatsapp-flotante:hover {
+      box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
+      transform: scale(1.1);
+    }
+
+    footer { 
+      background: #000; 
+      padding: 40px 20px 30px; 
+      text-align: center; 
+      color: #666; 
+      font-size: 0.9em;
+      margin-top: 20px;
+    }
+    footer a { color: #FFD700; text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 400px) {
+      .hero { padding: 50px 15px 40px; }
+      .section { padding: 35px 15px; }
+      .paquete { padding: 25px 18px; }
+      .paquete.promo { transform: scale(1); }
+      .btn { padding: 14px 26px; font-size: 1em; }
+      .btn-grande { padding: 15px 30px; font-size: 1.05em; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="barra-urgente">
+    ⚡ ¡SOLO POR TIEMPO LIMITADO! LLEVA 3 CANCIONES POR EL PRECIO DE 2 +$99 ⚡
+  </div>
+
+  <div class="hero">
+    <h1>🎵 CANCIONES EXPRESS</h1>
+    <p class="emocion">✨ ¡TU HISTORIA CONVERTIDA EN MÚSICA! ✨</p>
+    <p class="emocion">❤️ Un regalo que se queda para siempre</p>
+    <p>Cuéntame tu historia → apruebas la letra antes de grabar → te entrego 2 opciones → eliges la que más te emociona 🎧</p>
+    <a class="btn btn-grande" href="https://wa.me/526643758151?text=🔥%20Hola!%20Quiero%20mi%20canci%C3%B3n%20personalizada%20YA!" target="_blank">🚀 ¡LA QUIERO AHORA!</a>
+  </div>
+
+  <div class="section">
+    <h2>¿Cómo funciona? ⚡ Rápido y Seguro</h2>
+    <div class="pasos">
+      <div class="paso"><b>1️⃣</b> Me cuentas tu idea</div>
+      <div class="paso"><b>2️⃣</b> Te escribo la letra</div>
+      <div class="paso"><b>3️⃣</b> ¡Tú apruebas!</div>
+      <div class="paso"><b>4️⃣</b> Grabo y eliges tu favorita</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🔥 ELIGE TU PAQUETE 🔥</h2>
+    <div class="paquetes">
+      
+      <div class="paquete">
+        <h3>📱 REELS & VIDEOS</h3>
+        <div class="precio">$599 <small>MXN</small></div>
+        <p style="color:#888; font-size:0.9em; margin-bottom:10px;">¡Que tu marca suene diferente!</p>
+        <ul>
+          <li>Audio de 30 segundos</li>
+          <li>Letra aprobada por ti</li>
+          <li>Portada incluida</li>
+          <li>1 revisión incluida</li>
+          <li>Entrega por WhatsApp</li>
+        </ul>
+        <a class="btn" href="https://wa.me/526643758151?text=Hola!%20Quiero%20el%20paquete%20REELS%20por%20%24599%20%F0%9F%93%B1" target="_blank">¡LO QUIERO! 🛒</a>
+      </div>
+
+      <div class="paquete">
+        <h3>🎤 CANCIÓN COMPLETA</h3>
+        <div class="precio">$999 <small>MXN</small></div>
+        <p style="color:#FFD700; font-size:0.9em; font-weight:bold; margin-bottom:10px;">⭐ ¡Lo más pedido!</p>
+        <ul>
+          <li>Más de 2 minutos de canción</li>
+          <li>Tu nombre e historia real</li>
+          <li>Te doy 2 opciones — eliges la mejor</li>
+          <li>Portada estilo álbum</li>
+          <li>¡La subo a YouTube por ti!</li>
+          <li>2 revisiones incluidas</li>
+          <li>Entrega en 24 a 48 horas</li>
+          <li>Descuento en tus próximas canciones</li>
+        </ul>
+        <a class="btn" href="https://wa.me/526643758151?text=Hola!%20Quiero%20el%20paquete%20COMPLETO%20por%20%24999%20%F0%9F%8E%A4" target="_blank">¡MÍA! ✨</a>
+      </div>
+
+      <div class="paquete promo">
+        <div class="etiqueta-top">🔥 ¡LA MEJOR OFERTA!</div>
+        <h3>🎁 2x1 + 1 EXTRA</h3>
+        <div class="precio">+$99 <small>MXN</small></div>
+        <p style="color:#FFB000; font-weight:bold; font-size:0.95em; margin-bottom:10px;">💥 ¡LLEVAS 3 POR EL PRECIO DE 2!</p>
+        <ul>
+          <li>Compras 2 paquetes del que quieras</li>
+          <li>¡Por solo $99 más!</li>
+          <li>✅ Recibes 1 canción EXTRA</li>
+          <li>Perfecto para regalar o para ti</li>
+          <li>¡La opción más popular!</li>
+        </ul>
+        <a class="btn btn-promo" href="https://wa.me/526643758151?text=🔥%20QUIERO%20LA%20PROMO!%202x1%20%2B%201%20extra%20por%20%2499%20%F0%9F%8E%81" target="_blank">🔥 ¡LA QUIERO YA!</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>⭐ LO QUE DICEN NUESTROS CLIENTES</h2>
+    <div class="testimonios">
+      <div class="testimonio">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"¡Increíble! Mi novia lloró de emoción cuando escuchó su canción. Totalmente recomendado 🥺"</p>
+        <div class="testimonio-autor">— Carlos M.</div>
+      </div>
+      <div class="testimonio">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Entrega rápida, muy profesional, y la calidad es excelente. Ya pedí otra para mi mamá 💝"</p>
+        <div class="testimonio-autor">— Daniela T.</div>
+      </div>
+      <div class="testimonio">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"El mejor regalo que pude darle. La canción suena profesional y muy personal. ¡10/10!"</p>
+        <div class="testimonio-autor">— Juan P.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🎯 Para cada momento especial</h2>
+    <div class="categorias">
+      <span class="cat">🏪 Mi Negocio</span>
+      <span class="cat">🎂 Cumpleaños</span>
+      <span class="cat">❤️ Dedicatorias</span>
+      <span class="cat">🎓 Graduaciones</span>
+      <span class="cat">🎤 Corridos</span>
+      <span class="cat">💒 Bodas</span>
+      <span class="cat">🎉 Eventos</span>
+    </div>
+    <p style="margin-top:25px; color:#aaa; max-width:500px; margin-left:auto; margin-right:auto;">💬 ¿No sabes cuál elegir? ¡Escríbeme y te ayudo a decidir sin compromiso!</p>
+  </div>
+
+  <footer>
+    <p>© 2026 CANCIONES EXPRESS — Hecho con ❤️ en Tijuana, BC 🇲🇽</p>
+    <p>📲 WhatsApp: <a href="https://wa.me/526643758151" target="_blank">+52 664 375 8151</a></p>
+    <p>🎬 Sígueme: <a href="https://tiktok.com/@elpsikoloko777" target="_blank">@elpsikoloko777</a></p>
+  </footer>
+
+  <!-- BOTÓN WHATSAPP FLOTANTE -->
+  <a href="https://wa.me/526643758151?text=Hola!%20Tengo%20una%20pregunta%20sobre%20las%20canciones%20personalizadas%20🎵" class="whatsapp-flotante" title="Escribir por WhatsApp">💬</a>
+
+  <script>
+    // Tracking básico de conversiones
+    document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+      link.addEventListener('click', function() {
+        console.log('Click en CTA:', this.textContent);
+      });
+    });
+  </script>
+
+</body>
+</html>
